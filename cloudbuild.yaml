@@ -1,10 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/cloud-build-test-228706/testpush-image', '.']
+  args: ['build', '-t', 'gcr.io/cloud-build-test-228706/${_IMAGE}:$BUILD_ID', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/cloud-build-test-228706/testpush-image']
+  args: ['push', 'gcr.io/cloud-build-test-228706/${_IMAGE}:$BUILD_ID']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/${_DEPLOYMENT}', '${_CONTAINER}=gcr.io/cloud-build-test-228706/testpush-image']
+  args: ['set', 'image', 'deployment/${_DEPLOYMENT}', '${_CONTAINER}=gcr.io/cloud-build-test-228706/${_IMAGE}:$BUILD_ID']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cloud-build-test-cluster'
