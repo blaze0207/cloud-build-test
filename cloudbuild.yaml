@@ -1,9 +1,21 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'https://github.com/GoogleCloudPlatform/cloud-builders']
-  env: ['PROJECT_ROOT=hello']
+# Uses the ubuntu build step:
+# to run a shell script; and
+# set env variables for its execution
+- name: 'ubuntu'
+  args: ['bash', './quickstart.sh']
+  env:
+  - 'BUILD=$BUILD_ID'
+  - 'PROJECT=$PROJECT_ID'
+  - 'REV=$REVISION_ID'
+
+# Uses the docker build step to build an image called my-image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/myimage', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', '.']
+
+# my-image is pushed to Container Registry
+images:
+- 'gcr.io/$PROJECT_ID/my-image'
 # steps:
 # - name: gcr.io/cloud-builders/gcloud
 #   args: ['source', 'repos', 'clone', 'default']
