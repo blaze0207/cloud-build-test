@@ -21,8 +21,5 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE}']
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['set', 'image', 'deployment/${_DEPLOYMENT}', 'my-container=gcr.io/$PROJECT_ID/${_IMAGE}']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster'
 # images:
 # - 'gcr.io/$PROJECT_ID/${_IMAGE}'
