@@ -1,6 +1,9 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE}', '.']
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  args: ['source', 'repos', 'clone', 'default']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE}', '.']
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE}']
 # - name: 'gcr.io/cloud-builders/kubectl'
