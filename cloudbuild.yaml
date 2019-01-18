@@ -20,9 +20,15 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE}']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/${_DEPLOYMENT}', 'my-container=gcr.io/$PROJECT_ID/${_IMAGE}']
+  args: ['set', 'image', 'deployment/${_DEPLOYMENT}', '${_CONTAINER}=gcr.io/$PROJECT_ID/${_IMAGE}']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cloudbuildtest'
+  - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
 # images:
 # - 'gcr.io/$PROJECT_ID/${_IMAGE}'
+substitutions:
+  _CLUSTER: cloudbuildtest
+  _ZONE: us-central1-a
+  _IMAGE: example-image
+  _CONTAINER: nginx
+  _DEPLOYMENT: example-deployment
