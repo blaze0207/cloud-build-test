@@ -1,11 +1,6 @@
 steps:
 # Uses the ubuntu build step:
 # to run a shell script; and
-# set env variables for its execution
-# - name: 'ubuntu'
-  # args: ['bash', './quickstart.sh']
-
-# Uses the docker build step to build an image called my-image
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE}', '.']
 
