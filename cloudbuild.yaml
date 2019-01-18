@@ -31,4 +31,4 @@ substitutions:
   _ZONE: us-central1-a
   _IMAGE: example-image
   _CONTAINER: nginx
-  _DEPLOYMENT: test-cloud-build
+  _DEPLOYMENT: cloud-build-test
