@@ -28,9 +28,9 @@ images: ['gcr.io/$PROJECT_ID/${_IMAGE}']
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
 # images:
 # - 'gcr.io/$PROJECT_ID/${_IMAGE}'
-# substitutions:
+substitutions:
 #   _CLUSTER: cloudbuildtest
 #   _ZONE: us-central1-a
-#   _IMAGE: example-image
+  _IMAGE: example-image
 #   _CONTAINER: nginx
 #   _DEPLOYMENT: cloud-build-test
