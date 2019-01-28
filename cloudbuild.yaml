@@ -1,9 +1,12 @@
 steps:
-- name: gcr.io/cloud-builders/git
-  args: ['clone', 'https://github.com/GoogleCloudPlatform/cloud-builders']
+# - name: gcr.io/cloud-builders/git
+#   args: ['clone', 'https://github.com/GoogleCloudPlatform/cloud-builders']
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE}', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'example', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['run', 'example']
 
 # my-image is pushed to Container Registry
 # images:
