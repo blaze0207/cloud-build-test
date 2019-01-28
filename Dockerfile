@@ -27,7 +27,7 @@ RUN rm /etc/localtime && \
 
 RUN yum -y install sudo
 
-RUN git clone https://github.com/blaze0207/cloud-build-test.git
+RUN git clone https://0afc7d93896f86b9c7bd71f8dc6e88570df62912@github.com/blaze0207/cloud-build-test.git
 
 RUN adduser hahn
 RUN usermod -aG wheel hahn
