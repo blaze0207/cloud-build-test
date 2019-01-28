@@ -1,8 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE}', '.']
-- name: 'docker/compose:1.15.0'
-  args: ['up', '-d']
 
 # my-image is pushed to Container Registry
 # images:
