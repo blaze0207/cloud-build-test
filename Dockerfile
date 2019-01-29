@@ -12,6 +12,9 @@ RUN wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm 
     yum -y clean all
 RUN yum -y install php56u-devel gcc
 RUN yum -y install sudo
+RUN cd /tmp && \
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
 # 拉測試專案
 RUN git clone https://github.com/blaze0207/cloud-build-test.git
