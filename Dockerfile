@@ -11,24 +11,9 @@ RUN wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm 
     yum -y install php56u php56u-gd php56u-mysql php56u-mcrypt php56u-openssl php56u-pdo php56u-mbstring php56u-tokenizer php56u-xml php56u-soap mod_ssl openssl && \
     yum -y clean all
 RUN yum -y install php56u-devel gcc
-RUN yum -y install openssl-devel
-RUN pecl install mongodb
-RUN curl https://bootstrap.pypa.io/2.6/get-pip.py -o get-pip.py && \
-    python get-pip.py
-RUN pip install supervisor && \
-    pip install setuptools --upgrade
-RUN yum -y install python36u python36u-pip gcc python36u-devel && \
-    pip3.6 install pip setuptools --upgrade
-RUN pip3.6 install scrapy
-RUN cd /tmp && \
-    curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer
-RUN rm /etc/localtime && \
-    ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime
-
 RUN yum -y install sudo
 
-# 拉專案
+# 拉測試專案
 RUN git clone https://github.com/blaze0207/cloud-build-test.git
 
 # 建立 user 並授與 sudo
