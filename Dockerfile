@@ -1,3 +1,4 @@
+# 安裝環境與套件
 FROM centos:6
 
 RUN yum -y update && \
@@ -27,23 +28,30 @@ RUN rm /etc/localtime && \
 
 RUN yum -y install sudo
 
-RUN git clone https://0afc7d93896f86b9c7bd71f8dc6e88570df62912@github.com/blaze0207/cloud-build-test.git
+# 拉專案
+RUN git clone https://github.com/blaze0207/cloud-build-test.git
 
+# 建立 user 並授與 sudo
 RUN adduser hahn
 RUN usermod -aG wheel hahn
 
+# 將專案改變擁有者權限
 RUN chown hahn -R /cloud-build-test
 USER hahn
 
+# 這邊根據每個人的狀況決定，因為我本機是 php7， 所以會有版本的問題，這邊刪掉用 php5 的環境去安裝
 RUN rm -f /cloud-build-test/composer.lock
 RUN rm -rf /cloud-build-test/vendor
 
+# 進入資料夾
 WORKDIR /cloud-build-test
 
+# 開始安裝
 RUN composer install
 
+# 初始化環境變數
 RUN cp .env.example .env
 RUN php artisan key:generate
 
+# 執行單元測試
 CMD ["/cloud-build-test/vendor/bin/phpunit"]
-# CMD ["/cloudbuild.sh"]
